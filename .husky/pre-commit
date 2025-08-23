@@ -1,0 +1,44 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+## husky task runner examples -------------------
+## Note : for local installation use 'dotnet' prefix. e.g. 'dotnet husky'
+
+## run all tasks
+#husky run
+
+### run all tasks with group: 'group-name'
+#husky run --group group-name
+
+## run task with name: 'task-name'
+#husky run --name task-name
+
+## pass hook arguments to task
+#husky run --args "$1" "$2"
+
+## or put your custom commands -------------------
+#echo 'Husky.Net is awesome!'
+
+# Stop if any command fails
+set -e
+
+echo "🔧 Building project..."
+echo ""
+dotnet build
+
+echo "🎨 Validating code formatting..."
+echo ""
+dotnet format --verify-no-changes
+
+#echo "🧪 Running tests..."
+#echo ""
+#dotnet test IASDotNetTemplate.sln --no-build
+#dotnet test IASDotNetTemplate.sln --no-build --collect:"XPlat Code Coverage"
+
+echo "🔍 Validating branch name..."
+echo ""
+bash "$(dirname "$0")/validate-branch.sh"
+
+echo "✅ All pre-commit checks passed."
+echo ""
+

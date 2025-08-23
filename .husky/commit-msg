@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# pasa el path del mensaje al validador
+bash "$(dirname "$0")/validate-commit-msg.sh" "$1"
