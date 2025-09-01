@@ -1,15 +1,21 @@
-
 namespace HuskyTest
 {
-    public class Program
+    /// <summary>
+    /// Defines the <see cref="Program" />.
+    /// </summary>
+    public static class Program
     {
+        /// <summary>
+        /// The Main.
+        /// </summary>
+        /// <param name="args">Main method arguments.</param>
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -26,7 +32,6 @@ namespace HuskyTest
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
