@@ -64,11 +64,12 @@
 
   </ItemGroup>
 
-  <Target Name="InstallHuskyTools" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildThisFileDirectory).git/hooks/pre-commit')">
-    <Message Text="Restoring dotnet tools..." Importance="high" />
-    <Exec Command="dotnet tool restore" WorkingDirectory="$(MSBuildThisFileDirectory)" />
-    <Message Text="Installing Husky hooks..." Importance="high" />
-    <Exec Command="dotnet husky install" WorkingDirectory="$(MSBuildThisFileDirectory)" />
-  </Target>
+<Target Name="InstallHuskyTools" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildThisFileDirectory)husky_installed.flag')">
+  <Message Text="Restoring dotnet tools..." Importance="high" />
+  <Exec Command="dotnet tool restore" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+  <Message Text="Installing Husky hooks..." Importance="high" />
+  <Exec Command="dotnet husky install" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+  <WriteLinesToFile File="$(MSBuildThisFileDirectory)husky_installed.flag" Lines="Husky installed on $(MSBuildThisFileDirectory)" Overwrite="true" />
+</Target>
 
 </Project>
