@@ -64,7 +64,7 @@
 
   </ItemGroup>
 
-  <Target Name="InstallHuskyTools" BeforeTargets="Build" Condition="!Exists('$(MSBuildThisFileDirectory).git/hooks/pre-commit')">
+  <Target Name="InstallHuskyTools" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildThisFileDirectory).git/hooks/pre-commit')">
     <Message Text="Restoring dotnet tools..." Importance="high" />
     <Exec Command="dotnet tool restore" WorkingDirectory="$(MSBuildThisFileDirectory)" />
     <Message Text="Installing Husky hooks..." Importance="high" />
