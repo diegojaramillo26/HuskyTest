@@ -20,6 +20,7 @@
     
     <!-- Opcional: Otras configuraciones -->
     <!-- <GenerateDocumentationFile>true</GenerateDocumentationFile>-->
+    <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
     <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
     <Deterministic>true</Deterministic>
     <DebugType>portable</DebugType>
