@@ -49,6 +49,14 @@ if [ -z "$body" ]; then
     exit 1
 fi
 
+  # Validar palabras comunes en español que no deberían aparecer
+  spanish_words="(actualiza|actualizado|actualizando|actualización|actualizar|ajusta|ajustado|ajustando|ajuste|ajustes|ajustar|algoritmo|algoritmos|añade|añadido|añadiendo|añadir|aprobación|aprobado|aprobados|aprobando|arreglo|arreglado|arreglar|atributo|atributos|autenticación|autorización|base de datos|bucle|caché|cabecera|cabeceras|cambia|cambiado|cambiando|cambiar|cambio|clase|clases|columna|columnas|comentario|comentarios|compila|compilación|compilar|componente|componentes|condición|condiciones|configura|configurado|configurando|configuración|configurar|construcción|construir|construye|construyendo|consulta|consultas|constante|constantes|controlador|controladores|corregido|corregir|corrección|corrigiendo|corrige|crea|creación|creado|creando|crear|cuerpo|dato|datos|dependencia|dependencias|depura|depurado|depurando|depuración|depurar|desarrollo|deshacer|deshecho|desplegado|desplegar|despliega|despliegue|directorio|documenta|documentación|documentado|documentando|documentar|elemento|elementos|elimina|eliminación|eliminado|eliminando|eliminar|entorno|entornos|estructura|estructuras|estilo|excepción|excepciones|expresión|expresiones|flujo|flujos|formato|formulario|formularios|función|funciones|gestión|implementa|implementación|implementado|implementando|implementar|índice|índices|inicial|inicio|iniciado|instancia|instancias|integración|integrado|integrando|integrar|interfaz|interfaces|iteración|iteraciones|legado|librería|librerías|limpieza|limpiado|limpiando|limpiar|lista|listas|lógica|matriz|matrices|mejora|mejorado|mejorando|mejorar|método|métodos|migración|migraciones|migrado|migrando|migrar|modelo|modelos|modifica|modificación|modificado|modificando|modificar|módulo|módulos|nueva|nuevas|nuevo|nuevos|número|números|objeto|objetos|obsoleto|obsoletos|optimiza|optimizado|optimización|optimizar|paquete|paquetes|parámetro|parámetros|permiso|permisos|petición|peticiones|plantilla|plantillas|procedimiento|procedimientos|propiedad|propiedades|prueba|pruebas|quitar|quitado|quitando|registro|registros|rendimiento|repetición|repeticiones|resolviendo|resuelto|respuesta|respuestas|retorno|revertido|revertir|revirtiendo|revierte|ruta|rutas|seguridad|sentencia|sentencias|servicio|servicios|soluciona|solucionado|solucionando|solucionar|tabla|tablas|tipo|tipos|usuario|usuarios|utilidad|utilidades|validación|validaciones|validar|variable|variables|vista|vistas)"
+  if echo "$commit_msg" | grep -qiE "$spanish_words"; then
+      echo "❌ Error: The commit message appears to contain Spanish words. Please use English."
+      echo ""
+      exit 1
+  fi
+
 echo "✅ Commit message is valid"
 echo ""
 exit 0 
